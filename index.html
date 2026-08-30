@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>The System</title>
+<meta name="description" content="Gamified quest tracker with AI task analysis and nutrition tracking." />
+
+<!-- Add to Home Screen / PWA -->
+<link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#050810" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="System" />
+<link rel="apple-touch-icon" href="icon-192.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png" />
+
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #050810;
+    color: #d7ecff;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+  #root {
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+  #boot-fallback {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: -apple-system, system-ui, sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #6f93b8;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div id="root">
+    <div id="boot-fallback">Loading The System...</div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Registers the offline/instant-launch service worker. Safe to no-op
+    // on browsers or contexts that don't support it (e.g. some test tools).
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>
